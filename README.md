@@ -1,6 +1,6 @@
-# Tilt::Jbuilder
+= tilt-jbuilder
 
-TODO: Write a gem description
+Adds support for rendering Jbuilder templates using Tilt.
 
 ## Installation
 
@@ -18,7 +18,29 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+   require 'tilt/jbuilder.rb'
+
+  template = Tilt::JbuilderTemplate.new("templates/awesomeness.json.jbuilder")
+  teplate.render
+
+  # With locals
+  template = Tilt::JbuilderTemplate.new { "json.author name" }
+  template.render(nil, :name => 'Anthony')
+  # output: {"author":"Anthony"}
+
+  # With scope
+  template = Tilt::JbuilderTemplate.new { "json.author @name" }
+  scope = Object.new
+  scope.instance_variable_set :@name, 'Anthony'
+  template.render(scope)
+  # output: {"author":"Anthony"}  
+
+  # Block style
+  template = Tilt::JbuilderTemplate.new do |t|
+    lambda { |json| json.author 'Anthony'; json.target! }
+  end
+  template.render
+# output: {"author":"Anthony"}
 
 ## Contributing
 
