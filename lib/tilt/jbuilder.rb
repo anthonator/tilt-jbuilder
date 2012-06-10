@@ -15,7 +15,8 @@ module Tilt
 
     def prepare; end
 
-    def evaluate(scope = Object.new, locals, &block)
+    def evaluate(scope, locals, &block)
+      scope ||= Object.new
       context = scope.instance_eval { binding }
       set_locals(locals, scope, context)
       eval %{
