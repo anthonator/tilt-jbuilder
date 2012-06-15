@@ -1,5 +1,4 @@
 require 'jbuilder'
-require 'pathname'
 
 module Tilt
   class JbuilderTemplate < Template
