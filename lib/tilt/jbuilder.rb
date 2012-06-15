@@ -1,5 +1,7 @@
-require 'tilt/template'
+require 'rubygems'
+require 'blankslate'
 require 'jbuilder'
+require 'pathname'
 
 module Tilt
   class JbuilderTemplate < Template
@@ -20,11 +22,19 @@ module Tilt
       context = scope.instance_eval { binding }
       set_locals(locals, scope, context)
       eval %{
-        Jbuilder.encode do |json|
+        if defined? json
           if @_tilt_data.kind_of? Proc
             return @_tilt_data.call(Jbuilder.new)
           else
             eval @_tilt_data, binding
+          end
+        else
+          Jbuilder.encode do |json|
+            if @_tilt_data.kind_of? Proc
+              return @_tilt_data.call(Jbuilder.new)
+            else
+              eval @_tilt_data, binding
+            end
           end
         end
       }, context
@@ -40,4 +50,13 @@ module Tilt
   end
 
   register Tilt::JbuilderTemplate, 'jbuilder'
+end
+
+class Jbuilder < BlankSlate
+  def partial!(options, locals = {})
+    path = Pathname.new(options)
+    locals.merge! :json => self
+    template = Tilt::JbuilderTemplate.new("#{path.dirname.to_s}/_#{path.basename}.json.jbuilder")
+    template.render(nil, locals)
+  end
 end
