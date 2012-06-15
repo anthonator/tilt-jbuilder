@@ -34,4 +34,9 @@ describe Tilt::JbuilderTemplate do
     end
     "{\"author\":\"Anthony\"}".should == template.render
   end
+
+  it "should evaluate partials" do
+    template = Tilt::JbuilderTemplate.new { "json.partial! 'spec/partial', last_name: 'Smith'" }
+    "{\"last_name\":\"Smith\"}".should == template.render
+  end
 end
