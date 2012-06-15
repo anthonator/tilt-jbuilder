@@ -1,5 +1,3 @@
-require 'rubygems'
-require 'blankslate'
 require 'jbuilder'
 require 'pathname'
 
