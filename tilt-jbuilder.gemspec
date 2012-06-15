@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/tilt/version', __FILE__)
-
 Gem::Specification.new do |gem|
   gem.authors       = ["Anthony Smith"]
   gem.email         = ["anthony@sticksnleaves.com"]
@@ -10,6 +8,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'tilt'
   gem.add_dependency 'jbuilder'
+  gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
 
   gem.files         = `git ls-files`.split($\)
@@ -17,5 +16,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "tilt-jbuilder"
   gem.require_paths = ["lib"]
-  gem.version       = Tilt::JbuilderTemplate::VERSION
+  gem.version       = '0.2.0'
 end
