@@ -49,11 +49,11 @@ module Tilt
   register Tilt::JbuilderTemplate, 'jbuilder'
 end
 
-class Jbuilder < BlankSlate
+class Jbuilder
   def partial!(options, locals = {})
-    path = Pathname.new(options)
+    path = ::Pathname.new(options)
     locals.merge! :json => self
-    template = Tilt::JbuilderTemplate.new("#{path.dirname.to_s}/_#{path.basename}.json.jbuilder")
+    template = ::Tilt::JbuilderTemplate.new("#{path.dirname.to_s}/_#{path.basename}.json.jbuilder")
     template.render(nil, locals)
   end
 end
