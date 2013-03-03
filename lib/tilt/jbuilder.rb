@@ -10,7 +10,7 @@ module Tilt
     def partial!(options, locals = {})
       locals.merge! :json => self
       template = ::Tilt::JbuilderTemplate.new(fetch_partial_path(options.to_s))
-      template.render(nil, locals)
+      template.render(@scope, locals)
     end
 
     private
