@@ -9,13 +9,14 @@ module Tilt
 
     def partial!(options, locals = {})
       locals.merge! :json => self
-      template = ::Tilt::JbuilderTemplate.new(fetch_partial_path(options.to_s))
+      view_path = @scope.instance_variable_get('@_jbuilder_view_path')
+      template = ::Tilt::JbuilderTemplate.new(fetch_partial_path(options.to_s, view_path), nil, view_path: view_path)
       template.render(@scope, locals)
     end
 
     private
-    def fetch_partial_path(file)
-      view_path =
+    def fetch_partial_path(file, view_path)
+      view_path ||=
         if defined?(::Sinatra) && @scope.respond_to?(:settings)
           @scope.settings.views
         else
@@ -70,6 +71,8 @@ module Tilt
 
     private
     def set_locals(locals, scope, context)
+      view_path = options.delete(:view_path)
+      scope.send(:instance_variable_set, '@_jbuilder_view_path', view_path)
       scope.send(:instance_variable_set, '@_jbuilder_locals', locals)
       scope.send(:instance_variable_set, '@_tilt_data', data)
       set_locals = locals.keys.map { |k| "#{k} = @_jbuilder_locals[#{k.inspect}]" }.join("\n")
@@ -79,4 +82,3 @@ module Tilt
 
   register Tilt::JbuilderTemplate, 'jbuilder'
 end
-

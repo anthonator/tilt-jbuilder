@@ -39,4 +39,9 @@ describe Tilt::JbuilderTemplate do
     template = Tilt::JbuilderTemplate.new { "json.partial! 'spec/partial', last_name: 'Smith'" }
     "{\"last_name\":\"Smith\"}".should == template.render
   end
+
+  it "should evaluate partials with view_path" do
+    template = Tilt::JbuilderTemplate.new(nil, nil, view_path: 'spec') { "json.partial! '/partial', last_name: 'Smith'" }
+    "{\"last_name\":\"Smith\"}".should == template.render
+  end
 end
