@@ -16,12 +16,7 @@ module Tilt
 
     private
     def fetch_partial_path(file, view_path)
-      view_path ||=
-        if defined?(::Sinatra) && @scope.respond_to?(:settings)
-          @scope.settings.views
-        else
-          ::Dir.pwd
-        end
+      view_path ||= ::Dir.pwd
       ::Dir[::File.join(view_path, partialized(file) + ".{*.,}jbuilder")].first
     end
 
