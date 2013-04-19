@@ -1,3 +1,4 @@
+require 'tilt'
 require 'jbuilder'
 
 module Tilt
