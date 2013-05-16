@@ -69,4 +69,9 @@ describe "Sinatra Integration" do
     jbuilder_app { jbuilder "json.partial! :partial_with_helper_method" }
     body.should == "{\"is_admin\":false}"
   end
+
+  it "renders partials with local variables and non-Sinatra-application scope" do
+    jbuilder_app { jbuilder "json.partial! :partial_with_local_variable, last_name: \"Smith\"", :scope => Object.new }
+    body.should == "{\"last_name\":\"Smith\"}"
+  end
 end
