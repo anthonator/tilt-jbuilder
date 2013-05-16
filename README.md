@@ -2,7 +2,7 @@
 
 Adds support for rendering Jbuilder templates using Tilt.
 
-[![Build Status](https://secure.travis-ci.org/anthonator/tilt-jbuilder.png)](http://travis-ci.org/anthonator/tilt-jbuilder) [![Coverage Status](https://coveralls.io/repos/anthonator/tilt-jbuilder/badge.png?branch=master)](https://coveralls.io/r/anthonator/tilt-jbuilder?branch=master) [![Code Climate](https://codeclimate.com/github/anthonator/tilt-jbuilder.png)](https://codeclimate.com/github/anthonator/tilt-jbuilder)
+[![Gem Version](https://badge.fury.io/rb/anthonator%2Ftilt-jbuilder.png)](http://badge.fury.io/rb/anthonator%2Ftilt-jbuilder) [![Build Status](https://secure.travis-ci.org/anthonator/tilt-jbuilder.png)](http://travis-ci.org/anthonator/tilt-jbuilder) [![Coverage Status](https://coveralls.io/repos/anthonator/tilt-jbuilder/badge.png?branch=master)](https://coveralls.io/r/anthonator/tilt-jbuilder?branch=master) [![Code Climate](https://codeclimate.com/github/anthonator/tilt-jbuilder.png)](https://codeclimate.com/github/anthonator/tilt-jbuilder)
 
 ## Installation
 
