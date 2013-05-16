@@ -1,5 +1,4 @@
-require 'tilt'
-require 'tilt/jbuilder'
+require 'spec_helper'
 
 describe Tilt::JbuilderTemplate do
   it "should be registered for '.jbuilder' files" do
