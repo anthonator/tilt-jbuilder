@@ -67,7 +67,7 @@ module Tilt
 
     private
     def set_locals(locals, scope, context)
-      view_path = options.delete(:view_path)
+      view_path = options[:view_path]
       scope.send(:instance_variable_set, '@_jbuilder_view_path', view_path)
       scope.send(:instance_variable_set, '@_jbuilder_locals', locals)
       scope.send(:instance_variable_set, '@_tilt_data', data)
