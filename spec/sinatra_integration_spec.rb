@@ -46,6 +46,6 @@ describe "Sinatra Integration" do
       2.times do
         jbuilder_app { jbuilder "json.partial! :partial_with_local_variable, last_name: \"Smith\"" }
       end
-    end.should_not raise_error ArgumentError
+    end.should_not raise_error
   end
 end
