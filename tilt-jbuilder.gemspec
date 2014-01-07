@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Adds support for rendering Jbuilder templates in Tilt.}
   gem.homepage      = "https://github.com/anthonator/tilt-jbuilder"
 
-  gem.add_dependency 'tilt'
+  gem.add_dependency 'tilt', '<= 1.4.1'
   gem.add_dependency 'jbuilder'
 
   gem.files         = `git ls-files`.split($\)
@@ -14,5 +14,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "tilt-jbuilder"
   gem.require_paths = ["lib"]
-  gem.version       = '0.5.2'
+  gem.version       = '0.5.3'
 end
