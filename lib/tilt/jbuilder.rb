@@ -48,14 +48,14 @@ module Tilt
       klass = ::Tilt::Jbuilder
       eval %{
         if defined? json
-          if @_tilt_data.kind_of? Proc
+          if @_tilt_data.kind_of?(Proc)
             return @_tilt_data.call(klass.new(scope))
           else
             eval @_tilt_data, binding
           end
         else
           klass.encode(scope) do |json|
-            if @_tilt_data.kind_of? Proc
+            if @_tilt_data.kind_of?(Proc)
               return @_tilt_data.call(klass.new(scope))
             else
               eval @_tilt_data, binding
