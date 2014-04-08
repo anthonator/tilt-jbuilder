@@ -9,8 +9,7 @@ module Sinatra
 
     def render_with_view_path_support(engine, data, options = {}, locals = {}, &block)
       # Same as `views` extraction in the original method.
-      options[:view_path] = options[:views] || settings.views || "./views" \
-        if engine.to_s.downcase == "jbuilder"
+      options[:view_path] = options[:views] || settings.views || "./views" if engine.to_s.downcase == "jbuilder"
       render_without_view_path_support(engine, data, options, locals, &block)
     end
     alias_method :render_without_view_path_support, :render
