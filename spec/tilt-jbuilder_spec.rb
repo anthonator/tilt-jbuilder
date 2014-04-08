@@ -28,8 +28,11 @@ describe Tilt::JbuilderTemplate do
   end
 
   it "should evaluate block style templates" do
-    template = Tilt::JbuilderTemplate.new do |t|
-      lambda { |json| json.author "Anthony"; json.target! }
+    template = Tilt::JbuilderTemplate.new do |json|
+      lambda do |json|
+        json.author 'Anthony'
+        json.target!
+      end
     end
     "{\"author\":\"Anthony\"}".should == template.render
   end
