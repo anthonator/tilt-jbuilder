@@ -12,6 +12,7 @@ group :test do
   gem 'rspec'
   gem 'simplecov'
   gem 'sinatra'
+  gem 'sinatra-contrib'
 end
 
 # Specify your gem's dependencies in tilt-jbuilder.gemspec
