@@ -44,25 +44,15 @@ module Tilt
     def evaluate(scope, locals, &block)
       scope ||= Object.new
       context = scope.instance_eval { binding }
-      set_locals(locals, scope, context)
-      klass = ::Tilt::Jbuilder
-      eval %{
-        if defined? json
-          if @_tilt_data.kind_of?(Proc)
-            return @_tilt_data.call(klass.new(scope))
-          else
-            eval @_tilt_data, binding
-          end
+      ::Tilt::Jbuilder.encode(scope) do |json|
+        context.send(:local_variable_set, :json, json)
+        set_locals(locals, scope, context)
+        if data.kind_of?(Proc)
+          return data.call(::Tilt::Jbuilder.new(scope))
         else
-          klass.encode(scope) do |json|
-            if @_tilt_data.kind_of?(Proc)
-              return @_tilt_data.call(klass.new(scope))
-            else
-              eval @_tilt_data, binding
-            end
-          end
+          eval(data, context)
         end
-      }, context
+      end
     end
 
     private
