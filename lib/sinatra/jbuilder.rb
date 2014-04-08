@@ -4,6 +4,7 @@ require "sinatra/base"
 module Sinatra
   module Templates
     def jbuilder(template, options={}, locals={})
+      options[:default_content_type] = :json
       render :jbuilder, template, options, locals
     end
 
