@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Adds support for rendering Jbuilder templates in Tilt.}
   gem.homepage      = "https://github.com/anthonator/tilt-jbuilder"
 
-  gem.add_dependency 'tilt', '<= 1.4.1'
+  gem.add_dependency 'tilt', '<= 1.5.0'
   gem.add_dependency 'jbuilder'
   
   gem.add_development_dependency 'bundler'
