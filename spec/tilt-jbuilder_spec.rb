@@ -27,6 +27,11 @@ describe Tilt::JbuilderTemplate do
     "{\"author\":\"Anthony\"}".should == template.render(scope)
   end
 
+  it "should ignore cache!" do
+    template = Tilt::JbuilderTemplate.new { "json.cache! { json.author name }" }
+    "{\"author\":\"Anthony\"}".should == template.render(Object.new, :name => 'Anthony')
+  end
+
   it "should evaluate block style templates" do
     template = Tilt::JbuilderTemplate.new do |json|
       lambda do |json|
