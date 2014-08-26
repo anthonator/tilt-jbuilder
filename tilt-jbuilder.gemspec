@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'tilt', '<= 1.5.0'
   gem.add_dependency 'jbuilder'
-  
+
   gem.add_development_dependency 'bundler'
 
   gem.files         = `git ls-files`.split($\)
@@ -16,5 +16,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "tilt-jbuilder"
   gem.require_paths = ["lib"]
-  gem.version       = '0.6.0'
+  gem.version       = '0.6.1'
 end
