@@ -49,7 +49,7 @@ module Tilt
         if data.kind_of?(Proc)
           return data.call(::Tilt::Jbuilder.new(scope))
         else
-          eval(data, context)
+          file.is_a?(String) ? eval(data, context, file) : eval(data, context)
         end
       end
     end

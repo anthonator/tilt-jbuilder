@@ -5,6 +5,15 @@ describe Tilt::JbuilderTemplate do
     Tilt::JbuilderTemplate.should == Tilt['test.jbuilder']
   end
 
+  it "contains information about source file when error in .jbuilder file" do
+    template = Tilt::JbuilderTemplate.new(File.join('spec', 'support', 'views', 'invalid.jbuilder'))
+    begin
+      template.render
+    rescue => e
+      expect(e.backtrace.join).to include 'invalid.jbuilder:2' # we should see error on line 2 in file invalid.jbuilder in stacktrace
+    end
+  end
+
   it "should evaluate the template on #render" do
     template = Tilt::JbuilderTemplate.new { "json.author 'Anthony'" }
     "{\"author\":\"Anthony\"}".should == template.render
