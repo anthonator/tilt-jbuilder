@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rake'
 
 group :development do
-  gem 'bundler'
   gem 'coveralls', :require => false
 end
 
