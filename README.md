@@ -24,7 +24,7 @@ Or install it yourself as:
 require 'tilt/jbuilder.rb'
 
 template = Tilt::JbuilderTemplate.new("templates/awesomeness.json.jbuilder")
-teplate.render
+template.render
 
 # With locals
 template = Tilt::JbuilderTemplate.new { "json.author name" }
