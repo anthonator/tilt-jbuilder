@@ -1,4 +1,4 @@
-# tilt-jbuilder [![endorse](http://api.coderwall.com/anthonator/endorsecount.png)](http://coderwall.com/anthonator)
+# tilt-jbuilder
 
 Adds support for rendering Jbuilder templates using Tilt.
 
