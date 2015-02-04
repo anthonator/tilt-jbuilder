@@ -52,7 +52,7 @@ template.render
 
 ## Credits
 
-[![Sticksnleaves](http://sticksnleaves-wordpress.herokuapp.com/wp-content/themes/sticksnleaves/images/snl-logo-116x116.png)](http://www.sticksnleaves.com)
+[![Sticksnleaves](https://s3.amazonaws.com/sticksnleaves-assets/snl-logo-116x116.png)](http://www.sticksnleaves.com)
 
 tilt-jbuilder is maintained and funded by [Sticksnleaves](http://www.sticksnleaves.com)
 
