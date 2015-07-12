@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rake'
 
 group :development do
-  gem 'coveralls', :require => false
+  gem 'coveralls', require: false
 end
 
 group :test do
