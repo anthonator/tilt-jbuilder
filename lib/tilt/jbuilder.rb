@@ -36,6 +36,11 @@ module Tilt
       end
     end
 
+    # for now caching is not supported, but at least we can transparently ignore it
+    def cache!(key=nil, options={}, &block)
+      yield
+    end
+
     private
     def fetch_partial_path(file, view_path)
       view_path ||= ::Dir.pwd
