@@ -8,11 +8,32 @@ module Tilt
       super(*args, &block)
     end
 
-    def partial!(options, locals = {})
-      locals.merge! :json => self
+    def partial!(name_or_options, locals = {})
+      case name_or_options
+      when ::Hash
+        # partial! partial: 'name', locals: { foo: 'bar' }
+        options = name_or_options
+      else
+        # partial! 'name', foo: 'bar'
+        options = { partial: name_or_options, locals: locals }
+        as = locals.delete(:as)
+        options[:as] = as if as.present?
+        options[:collection] = locals[:collection] if locals.key?(:collection)
+      end
+
       view_path = @scope.instance_variable_get('@_jbuilder_view_path')
-      template = ::Tilt::JbuilderTemplate.new(fetch_partial_path(options.to_s, view_path), nil, view_path: view_path)
-      template.render(@scope, locals)
+      @template = ::Tilt::JbuilderTemplate.new(fetch_partial_path(options[:partial].to_s, view_path), nil, view_path: view_path)
+      render_partial_with_options options
+    end
+
+    def array!(collection = [], *attributes, &block)
+      options = attributes.extract_options!
+
+      if options.key?(:partial)
+        partial! options[:partial], options.merge(collection: collection)
+      else
+        super
+      end
     end
 
     private
@@ -25,6 +46,26 @@ module Tilt
       partial_file = path.split("/")
       partial_file[-1] = "_#{partial_file[-1]}" unless partial_file[-1].start_with?("_")
       partial_file.join("/")
+    end
+
+    def render_partial_with_options(options)
+      options[:locals] ||= {}
+      if options[:as] && options.key?(:collection)
+        collection = options.delete(:collection)
+        locals = options.delete(:locals)
+        array! collection do |member|
+          member_locals = locals.clone
+          member_locals.merge! options[:as] => member
+          render_partial member_locals
+        end
+      else
+        render_partial options[:locals]
+      end
+    end
+
+    def render_partial(options)
+      options.merge! json: self
+      @template.render @scope, options
     end
   end
 
