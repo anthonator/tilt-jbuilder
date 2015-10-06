@@ -90,5 +90,10 @@ describe Tilt::JbuilderTemplate do
       let(:template_body) { "json.array! ['foo', 'bar'], partial: 'spec/templates/collection_partial', as: :name" }
       it { is_expected.to eq %q/[{"attribute":"foo"},{"attribute":"bar"}]/ }
     end
+
+    context 'when use subpartials' do
+      let(:template_body) { "json.array! [{id: 1, profile: {name: 'Foo'}},{id: 2, profile: {name: 'Bar'}}], partial: 'spec/templates/user', as: :user" }
+      it { is_expected.to eq %q/[{"id":1,"profile":{"name":"Foo"}},{"id":2,"profile":{"name":"Bar"}}]/ }
+    end
   end
 end
