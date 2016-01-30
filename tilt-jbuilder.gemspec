@@ -16,5 +16,5 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(/^(test|spec|features)\//)
   gem.name          = 'tilt-jbuilder'
   gem.require_paths = ['lib']
-  gem.version       = '0.7.0'
+  gem.version       = '0.7.1'
 end
