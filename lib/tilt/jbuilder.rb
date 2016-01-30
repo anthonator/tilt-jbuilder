@@ -22,8 +22,8 @@ module Tilt
       end
 
       view_path = @scope.instance_variable_get('@_jbuilder_view_path')
-      @template = ::Tilt::JbuilderTemplate.new(fetch_partial_path(options[:partial].to_s, view_path), nil, view_path: view_path)
-      render_partial_with_options options
+      template = ::Tilt::JbuilderTemplate.new(fetch_partial_path(options[:partial].to_s, view_path), nil, view_path: view_path)
+      render_partial_with_options template, options
     end
 
     def array!(collection = [], *attributes, &block)
@@ -53,7 +53,7 @@ module Tilt
       partial_file.join("/")
     end
 
-    def render_partial_with_options(options)
+    def render_partial_with_options(template, options)
       options[:locals] ||= {}
       if options[:as] && options.key?(:collection)
         collection = options.delete(:collection)
@@ -61,16 +61,16 @@ module Tilt
         array! collection do |member|
           member_locals = locals.clone
           member_locals.merge! options[:as] => member
-          render_partial member_locals
+          render_partial template, member_locals
         end
       else
-        render_partial options[:locals]
+        render_partial template, options[:locals]
       end
     end
 
-    def render_partial(options)
+    def render_partial(template, options)
       options.merge! json: self
-      @template.render @scope, options
+      template.render @scope, options
     end
   end
 
